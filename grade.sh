@@ -1,4 +1,4 @@
-CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
+CPATH='.;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar'
 
 rm -rf student-submission
 rm -rf grading-area
@@ -17,9 +17,12 @@ else
     exit 1
 fi 
 
-cp -r student-submission/ListExamples.java grading-area
+cp student-submission/ListExamples.java grading-area
+cp TestListExamples.java grading-area
+cp -r lib grading-area
+cd grading-area
 
-javac student-submission/ListExamples.java TestListExamples.java 2>err.txt
+javac -cp $CPATH ListExamples.java TestListExamples.java 2>err.txt
 cat err.txt
 exit 1
 
